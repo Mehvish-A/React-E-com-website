@@ -1,30 +1,21 @@
-import React from 'react';
-
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import "bootstrap/dist/css/bootstrap.min.css";
-import reportWebVitals from './reportWebVitals';
-import {BrowserRouter,} from "react-router-dom";
-import { store,persistor } from './Store/store.js';
-import { PersistGate } from 'redux-persist/integration/react';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <Provider store = {store}>
-     <PersistGate loading={null} persistor={persistor}>
-    <BrowserRouter>
-    <App />
-    </BrowserRouter>
-    </PersistGate>
-    </Provider>
-  </React.StrictMode>
-);
+import { useEffect } from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Container, Table} from "reactstrap";
+import{Button} from "reactstrap";
+import { emptyCart } from "../Slice/cart";
+import { useNavigate } from "react-router-dom";
+ export default function Index() {
+  
+ const {productId} = useParams();
+ console. log ("productId",productId,tabIndex);
+useEffect(()=>{},[productId,tabIndex]);
 
 
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+
+  return ( 
+      
+        <Container fluid>Product Details Page</Container>
+                ) ;
+}
