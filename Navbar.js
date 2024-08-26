@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   Collapse,
   Navbar,
@@ -6,18 +7,30 @@ import {
   Nav,
   NavItem,
   NavbarText,
+Badge,
+NavLink,
+
+  
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LogoutUser } from "./slice/userslice";
+import { toast } from "react-toastify";
 export default function NavBar() {
+  const {user,cart} = useSelector ((state ) => state);
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-
+  {user.isLoggedin ? (<NavbarText ClassName ="mr-5">Welcome{user.data.email}</NavbarText>):null};
   const toggle = () => setIsOpen(!isOpen);
-
+  const handleLogout =() =>dispatch(LogoutUser());
+  toast.success ("User logged out");
   return (
     <div>
       <Navbar color="primary" expand={"sm"}>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
+
+        
           <Nav className="me-auto" navbar>
             <NavItem>
               <Link className="nav-link" to={"/"}>
@@ -28,11 +41,14 @@ export default function NavBar() {
               <Link className="nav-link" to={"/Cart"}>
                 Cart
               </Link>
+              <Badge color="success">{cart.lenght}</Badge>
             </NavItem>
             <NavItem>
+               (<NavLink onClick= {() =>dispatch(LogoutUser)}>Logout</NavLink>) 
+               :(
               <Link className="nav-link" to={"/Login"}>
                 Login
-              </Link>
+              </Link>)
             </NavItem>
           </Nav>
         </Collapse>
