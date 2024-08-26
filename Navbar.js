@@ -20,7 +20,7 @@ export default function NavBar() {
   const {user,cart} = useSelector ((state ) => state);
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  {user.isLoggedin ? (<NavbarText ClassName ="mr-5">Welcome{user.data.email}</NavbarText>):null};
+  {user.LoggedIn ? (<NavbarText ClassName ="mr-5">Welcome{user.data.email}</NavbarText>):null};
   const toggle = () => setIsOpen(!isOpen);
   const handleLogout =() =>dispatch(LogoutUser());
   toast.success ("User logged out");
